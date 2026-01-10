@@ -25,12 +25,17 @@ public class PlayerRepository : IPlayerRepository
     public async Task<Player?> GetByUsernameAsync(string username)
     {
         return await _context.Players
+            .Include(p => p.PlayerRoles)
+                .ThenInclude(pr => pr.Role)
             .FirstOrDefaultAsync(p => p.Username == username);
     }
 
     public async Task<IEnumerable<Player>> GetAllAsync()
     {
-        return await _context.Players.ToListAsync();
+        return await _context.Players
+            .Include(p => p.PlayerRoles)
+                .ThenInclude(pr => pr.Role)
+            .ToListAsync();
     }
 
     public async Task AddAsync(Player player)

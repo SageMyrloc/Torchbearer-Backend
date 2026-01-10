@@ -1,7 +1,10 @@
+using System.Security.Claims;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Torchbearer.Application.Commands;
 using Torchbearer.Application.DTOs;
+using Torchbearer.Application.Queries;
 
 namespace Torchbearer.Api.Controllers;
 
@@ -42,5 +45,15 @@ public class AuthController : ControllerBase
         {
             return BadRequest(new { message = ex.Message });
         }
+    }
+
+    [Authorize]
+    [HttpGet("me")]
+    public async Task<IActionResult> GetCurrentPlayer()
+    {
+        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var userId = int.Parse(userIdClaim!);
+        var result = await _mediator.Send(new GetCurrentPlayerQuery(userId));
+        return Ok(result);
     }
 }
