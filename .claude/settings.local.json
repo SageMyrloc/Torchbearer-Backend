@@ -4,7 +4,9 @@
       "Bash(dotnet build:*)",
       "Bash(dotnet ef migrations add:*)",
       "Bash(dotnet ef database update:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(TOKEN=\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6InRlc3RwbGF5ZXIiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJQbGF5ZXIiLCJleHAiOjE3Njg3NTMwNDYsImlzcyI6IlRvcmNoYmVhcmVyIiwiYXVkIjoiVG9yY2hiZWFyZXIifQ.2NaBZkAIPm85Bbk6YyWTXvFsEwKALe61nfo-bOPFHgI\")",
+      "Bash(sqlite3:*)"
     ]
   }
 }
