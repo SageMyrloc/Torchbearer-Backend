@@ -21,6 +21,7 @@ public class GetCurrentPlayerQueryHandler : IRequestHandler<GetCurrentPlayerQuer
         return new PlayerDto(
             player.Id,
             player.Username,
+            player.MaxCharacterSlots,
             player.PlayerRoles.Select(pr => pr.Role.Name));
     }
 }

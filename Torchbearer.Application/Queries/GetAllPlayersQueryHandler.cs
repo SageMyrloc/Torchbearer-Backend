@@ -20,6 +20,7 @@ public class GetAllPlayersQueryHandler : IRequestHandler<GetAllPlayersQuery, IEn
         return players.Select(p => new PlayerDto(
             p.Id,
             p.Username,
+            p.MaxCharacterSlots,
             p.PlayerRoles.Select(pr => pr.Role.Name)));
     }
 }

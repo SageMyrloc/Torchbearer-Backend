@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Torchbearer.Application.Interfaces;
 using Torchbearer.Domain.Entities;
+using Torchbearer.Domain.Enums;
 
 namespace Torchbearer.Infrastructure.Persistence.Repositories;
 
@@ -16,6 +17,7 @@ public class CharacterRepository : ICharacterRepository
     public async Task<Character?> GetByIdAsync(int id)
     {
         return await _context.Characters
+            .Include(c => c.Player)
             .Include(c => c.HexMap)
             .FirstOrDefaultAsync(c => c.Id == id);
     }
@@ -25,6 +27,27 @@ public class CharacterRepository : ICharacterRepository
         return await _context.Characters
             .Where(c => c.PlayerId == playerId)
             .ToListAsync();
+    }
+
+    public async Task<IEnumerable<Character>> GetAllAsync()
+    {
+        return await _context.Characters
+            .Include(c => c.Player)
+            .ToListAsync();
+    }
+
+    public async Task<IEnumerable<Character>> GetByStatusAsync(CharacterStatus status)
+    {
+        return await _context.Characters
+            .Include(c => c.Player)
+            .Where(c => c.Status == status)
+            .ToListAsync();
+    }
+
+    public async Task<int> CountByPlayerIdAsync(int playerId)
+    {
+        return await _context.Characters
+            .CountAsync(c => c.PlayerId == playerId);
     }
 
     public async Task AddAsync(Character character)

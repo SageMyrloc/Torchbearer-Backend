@@ -14,6 +14,23 @@ public class CharacterConfiguration : IEntityTypeConfiguration<Character>
             .IsRequired()
             .HasMaxLength(100);
 
+        builder.Property(c => c.ImageFileName)
+            .HasMaxLength(255);
+
+        builder.Property(c => c.Status)
+            .IsRequired();
+
+        builder.Property(c => c.Gold)
+            .HasColumnType("decimal(18,2)");
+
+        builder.Property(c => c.ExperiencePoints)
+            .IsRequired();
+
+        builder.Property(c => c.CreatedAt)
+            .IsRequired();
+
+        builder.Property(c => c.ApprovedAt);
+
         builder.HasOne(c => c.Player)
             .WithMany(p => p.Characters)
             .HasForeignKey(c => c.PlayerId)

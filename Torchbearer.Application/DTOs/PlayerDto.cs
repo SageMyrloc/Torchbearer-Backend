@@ -1,3 +1,3 @@
 namespace Torchbearer.Application.DTOs;
 
-public record PlayerDto(int Id, string Username, IEnumerable<string> Roles);
+public record PlayerDto(int Id, string Username, int MaxCharacterSlots, IEnumerable<string> Roles);

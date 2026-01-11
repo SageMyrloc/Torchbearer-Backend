@@ -7,6 +7,7 @@ public class Player
     public int Id { get; private set; }
     public string Username { get; private set; }
     public string PasswordHash { get; private set; }
+    public int MaxCharacterSlots { get; private set; } = 1;
 
     private readonly List<PlayerRole> _playerRoles = new();
     public IReadOnlyCollection<PlayerRole> PlayerRoles => new ReadOnlyCollection<PlayerRole>(_playerRoles);
@@ -50,5 +51,10 @@ public class Player
         {
             _characters.Add(character);
         }
+    }
+
+    public void UpdateMaxCharacterSlots(int slots)
+    {
+        MaxCharacterSlots = slots;
     }
 }
