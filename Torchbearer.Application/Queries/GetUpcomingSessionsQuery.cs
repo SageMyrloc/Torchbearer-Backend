@@ -3,4 +3,4 @@ using Torchbearer.Application.DTOs;
 
 namespace Torchbearer.Application.Queries;
 
-public record GetMyCharactersQuery(int PlayerId) : IRequest<MyCharactersResponseDto>;
+public record GetUpcomingSessionsQuery : IRequest<IEnumerable<SessionDto>>;

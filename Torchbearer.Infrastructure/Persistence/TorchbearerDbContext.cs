@@ -19,6 +19,8 @@ public class TorchbearerDbContext : DbContext
     public DbSet<Hex> Hexes { get; set; }
     public DbSet<PointOfInterest> PointsOfInterest { get; set; }
     public DbSet<PointOfInterestHex> PointOfInterestHexes { get; set; }
+    public DbSet<Session> Sessions { get; set; }
+    public DbSet<SessionCharacter> SessionCharacters { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

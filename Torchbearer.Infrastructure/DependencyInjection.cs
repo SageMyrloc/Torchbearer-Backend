@@ -19,6 +19,8 @@ public static class DependencyInjection
         services.AddScoped<IRoleRepository, RoleRepository>();
         services.AddScoped<ICharacterRepository, CharacterRepository>();
         services.AddScoped<IHexMapRepository, HexMapRepository>();
+        services.AddScoped<ISessionRepository, SessionRepository>();
+        services.AddScoped<ISessionCharacterRepository, SessionCharacterRepository>();
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
