@@ -160,4 +160,23 @@ public class DMSessionsController : ControllerBase
             return BadRequest(new { message = ex.Message });
         }
     }
+
+    [HttpDelete("{sessionId}/attendees/{characterId}")]
+    public async Task<IActionResult> RemoveAttendee(int sessionId, int characterId)
+    {
+        try
+        {
+            var playerId = GetPlayerId();
+            await _mediator.Send(new RemoveAttendeeCommand(sessionId, characterId, playerId));
+            return NoContent();
+        }
+        catch (UnauthorizedAccessException)
+        {
+            return Forbid();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
+    }
 }
